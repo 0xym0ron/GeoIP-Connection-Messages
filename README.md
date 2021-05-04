@@ -6,8 +6,8 @@ When a player connects to the server everyone will be notified of their country,
 geoip_api "api" - Changes the API (Run the command with no arguments to get the API list)
 
 ### API Providers
-*http://ipstack.com
-*http://ip-api.com
+* http://ipstack.com
+* http://ip-api.com
 *http://geoip.nekudo.com
 *https://geoip.tools
 *https://ip.sb/
