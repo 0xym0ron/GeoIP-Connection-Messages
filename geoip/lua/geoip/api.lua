@@ -320,43 +320,6 @@ geoip.api.sources = {
 
 }
 
-// This one is only accessible from one IP, figured I'd use it as a private API for my dedicated server.
-if tostring( game.GetIPAddress() ):Split( ":" )[1] == "162.248.94.135" then
-
-	geoip.api.sources["private"] = {
-	
-		url = "http://api.ipinfodb.com/v3/ip-city/",
-		
-		key = "9b0e99805c30f6a7eb676a50151cdf317cc0ab5cd63a25485dde8b0947acc4d9",
-		
-		func = 	function( api, ip )
-		
-			local tab = geoip.api.sources[api]
-
-			local url = tab.url .. "?key=" .. tab.key .. "&format=json&ip=" .. ip
-
-			return tostring( url )
-		
-		end,
-		
-		vars = function( cache, data )
-			
-			local tab = table.Copy( cache )
-			
-			tab.country_name = data.countryName or tab.country_name
-			tab.country_code = data.countryCode or tab.country_code
-			tab.region_name = data.regionName or tab.region_name
-			tab.city = data.cityName or tab.city
-			tab.zip = data.zipCode or tab.zip
-			
-			return tab
-		
-		end,
-	
-	}
-
-end
-
 function geoip.api.Format( ip )
 	
 	local api = GetConVarString( "geoip_api" ) or geoip.config.default_api
