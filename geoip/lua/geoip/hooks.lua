@@ -72,6 +72,8 @@ geoip.hooks.Add( "PlayerInitialSpawn", function( ply )
 	
 	local data = geoip.hooks.data[ip]
 	
+	if data == nil then return end
+
 	geoip.hooks.data[ip].spawn_time = CurTime()
 	
 	local time = string.NiceTime( CurTime() - data.connect_time )
@@ -104,6 +106,8 @@ geoip.hooks.Add( "PlayerDisconnected", function( ply )
 	
 	local data = geoip.hooks.data[ip]	
 	
+	if data == nil then return end
+
 	local time = string.NiceTime( CurTime() - data.spawn_time )
 	
 	chat.AddText( 
